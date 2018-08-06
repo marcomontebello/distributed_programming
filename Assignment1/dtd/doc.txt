@@ -1,0 +1,80 @@
+network SERVICE
+|
+|——POLICY (reach.|trav.) * element
+|	|——name attribute (ID)
+|	|——NF-FGname attribute (IDREF)
+|	|——PolicyKind (REACHABILITY|TRAVERSAL) #REQUIRED
+|	|——ReachabilityPolicy element
+|	|	|——SRCnode 	attribute IDREF #REQUIRED
+|	|	|—-DSTnode	attriBute IDREF #REQUIRED
+|	|——TraversalPolicy element
+|	|	|——SRCnode 	attribute IDREF #REQUIRED
+|	|	|—-DSTnode	attriBute IDREF #REQUIRED
+|	|	|——TraversedFunctionalType * element
+|	|		|——FunctionalType(FW,DPI,NAT,SPAM,CACHE,VPN,WEB_SERVER,WEB_CLIENT,MAIL_SERVER,MAIL_CLIENT) attribute
+|	|— HoldType (Positive|Negative)  attribute
+|	|—-VerificationResult 1 element
+|		|—resultMsg 1 element
+|		|—verificationTime attribute
+|		|—verResult (SATISFIED | VIOLATED | NOT-YET-VERIFIED) attribute “null”
+|	
+|
+|———NF-FG * element
+	|—name attribute (ID)
+	|—updateTime attribute
+	|—Node * element 
+		|—name attribute (ID)
+		|—FunctionalType(FW,DPI,NAT,SPAM,CACHE,VPN,WEB_SERVER,WEB_CLIENT,MAIL_SERVER,MAIL_CLIENT) attr.
+		|—Link  element
+			|—name  attribute  (ID)
+			|—source  attribute (IDREF)
+			|—destination attribute (IDREF)
+
+Line of code (nffgInfo.dtd) | Description
+
+2 | The SERVICE PROVIDER provide services (* - from 0 to infinite) described by NF-FGs and verify the correctness
+	 of the service through policies (* - from 0 to infinite).
+	 	 
+4 | Each Nffg (graph) is made of at least 1 node and is characterised by an univocal/mandatory name (ID - #REQUIRED) and
+	a generic string (CDATA) that represents the last updateTime of the graph or the creationTime of the graph itself.
+	It is a simple CDATA because DTD doesn't implement a better or a direct way to represent dates.
+	
+9 | Each node has a mandatory name (#REQUIRED) that uniquely (ID) identify it and has a functionality 
+	inside the network which is represented by one of the strings listed in the enumeration functionalType(FW|DPI|...)
+	I chose to use ID and enumeration attributes because they are the types that are better adapted to the specifics;
+	furthermore each node is connected via links to 0 or more nodes, this is the reason why the node element 
+	contains a sequence of link elements(* - from 0 to infinite).
+	
+15 | each link is an empty model type; it contains only attributes that characterise the link itself.
+16 | in-fact a link is characterised by a unique name (ID) that is #REQUIRED to identify the node
+		and mandatorily by a source and a destination Node without which it would not exist.
+		To avoid redundancy of data they are only references to
+		real node elements (IDREF). Actually the limitation of the dtd technology don't allow us to refer to
+		a specific element in the document but only allow us to specify that an attribute is a reference
+		to an ID in the document(*).
+		
+22 | A policy could be a reachability policy or a traversal policy and its result is stored inside
+	a verificationResult element. Just because both reachability that traversal share the same attributes,
+	these are defined inside the generic policy element 
+	
+24 | A policy is characterised by a mandatory unique name like the other entities in the service provider system;
+		and it refers mandatorily to an existing graph (IDREFS-here apply the same limitations discussed above*).
+		The kind of logic about the policy is described by an enumeration type that is mandatory because 
+		cannot exists a policy without this description.furthermore each policy has to describe the result of 
+		its verification and this is done by a verificationResult element.(exists also if the policy has not yet verified).
+		
+32-47 | Reachability and Traversal Policy must indicate a source and a destination node this is why srcNode and
+		dstNode are #REQUIRED, furthermore Traversal Policy need to indicates 1 or more network functionalities
+		this is why is defined the element traversedFunctionalType. 
+		
+ 49 | verificationResult includes two attributes(verificationTime and verResult) and the resultMsg element 
+ 		with a message inside.
+ 		
+ 		-verificationTime is a generic string that indicate the time of the verification and if the policy
+ 		has not yet verified this is set to NULL by default. It is a simple CDATA because DTD doesn't 
+ 		implement a better or a direct way to represent dates.
+ 		
+ 		-verResult instead has to be mandatorily one of these strings: SATISFIED or VIOLATED accordingly the rules
+ 		if the policy has been verified, or NOT-YET-VERIFIED if not. 
+ 		
+ 55 | the resultMsg is a human readable message represented by a generic string #PCDATA	element.

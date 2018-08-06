@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://www.example.org/Neo4J" xmlns:wsrs="http://www.example.org/Neo4J">
+
+	<xsd:element name="nffgs">
+    	<xsd:complexType>
+	   	<xsd:sequence>
+	   	   <xsd:element ref="wsrs:nffg" maxOccurs="unbounded" minOccurs="0"/>	   	   		
+        </xsd:sequence>		
+   		</xsd:complexType>
+   	</xsd:element>
+
+    <xsd:element name="policies">  		
+ 			<xsd:complexType>
+	 		  	<xsd:sequence>
+	   			    <xsd:element ref="wsrs:policy" maxOccurs="unbounded" minOccurs="0" />
+       		</xsd:sequence>
+       		</xsd:complexType>
+	 </xsd:element>  	
+	 
+	 
+	 <xsd:element name="nffg">
+		<xsd:complexType>
+	   		<xsd:sequence>
+	   			<xsd:element name="node" type="wsrs:nodeType" minOccurs="1" maxOccurs="unbounded"/>
+	   		</xsd:sequence>
+	   		<xsd:attribute name="name" type="xsd:string" use="required"/>
+	   		<xsd:attribute name="updateTime" type="xsd:dateTime"/>		
+	   		<xsd:attribute name="numberOfNodes" type="xsd:nonNegativeInteger" use="required"/>
+	   	</xsd:complexType>
+   	</xsd:element>
+   	
+   	
+	<xsd:element name="policy" >
+       	<xsd:complexType >
+	   		<xsd:sequence>
+		  	  	<xsd:element name="srcNode"  minOccurs="1" maxOccurs="1">
+			  	     <xsd:complexType >
+		  	  			<xsd:sequence>
+		   	  			</xsd:sequence>
+			   				<xsd:attribute name="name" type="xsd:string" use="required"/>  	  	
+		   		  	</xsd:complexType>
+		 	 	</xsd:element>
+		   			
+		   		<xsd:element name="dstNode"  minOccurs="1" maxOccurs="1" >
+		   		   <xsd:complexType >
+			   	  		<xsd:sequence>
+			   	  		</xsd:sequence>
+			   				<xsd:attribute name="name" type="xsd:string" use="required"/>  	  	
+		   				 </xsd:complexType>
+		   		</xsd:element>
+		   			
+		   			
+		    	<xsd:element name="verificationResult"  minOccurs="0" >
+		    			<xsd:complexType>
+		   					<xsd:sequence>
+		   						<xsd:element name="resultMessage" type="xsd:string"/>
+		   						<xsd:element name="result" >
+		   						<xsd:simpleType >
+								  <xsd:restriction base="xsd:string">
+										<xsd:enumeration value="SATISFIED"/>
+										<xsd:enumeration value="NOTSATISFIED"/>
+									    <xsd:enumeration value="UNVERIFIED"/>		        
+								   </xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>		
+		   				</xsd:sequence>
+		   				<xsd:attribute name="verificationTime" type="xsd:dateTime"/>
+		   			</xsd:complexType>
+		    	</xsd:element>
+		    		
+		    		
+		    	<xsd:sequence>	    		
+			   			<xsd:element name="traversedFuncType" type="wsrs:functionType" minOccurs="0" maxOccurs="unbounded"/>
+			   	</xsd:sequence> 
+		 </xsd:sequence>
+   		
+	  	<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+	  	<xsd:attribute name="policyLogic" type="wsrs:policyLogicType" use="required"/>
+	   	<xsd:attribute name="nffg_ref" type="xsd:string" use="required"/>
+	  	<xsd:attribute name="policyKind" type="wsrs:policyKindType"  use="required"/>
+  	  </xsd:complexType>
+ 	</xsd:element>   	
+   		
+   	<xsd:complexType name="nodeType">
+	   	<xsd:sequence>
+	   	   <xsd:element name="link_ref" type="wsrs:linkTypeRef" minOccurs="0"  maxOccurs="unbounded"/>	   	   		
+        </xsd:sequence>
+  		<xsd:attribute name="name" type="xsd:string" use="required"/>
+  		<xsd:attribute name="function" type="wsrs:functionType" use="required" />
+  		<xsd:attribute name="numberOfLinks" type="xsd:nonNegativeInteger" use="required" />	
+   	</xsd:complexType>
+   		
+    <xsd:complexType name="linkTypeRef">	
+   		<xsd:sequence>
+   		</xsd:sequence>
+   		<xsd:attribute name="name" type="xsd:string" use="required"/>
+   	   	<xsd:attribute name="srcNode" type="xsd:string" use="required"/>
+   	   	<xsd:attribute name="dstNode" type="xsd:string" use="required"/>
+   	</xsd:complexType>
+	 	
+    <xsd:simpleType name="policyKindType">
+	    <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REACHABILITY"/>
+			<xsd:enumeration value="TRAVERSAL"/>
+	   	</xsd:restriction>
+	</xsd:simpleType>
+		
+	<xsd:simpleType name="policyLogicType" >
+		 <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="POSITIVE"/>
+			<xsd:enumeration value="NEGATIVE"/>
+		 </xsd:restriction>
+	</xsd:simpleType>
+	
+	 <xsd:simpleType name="functionType">
+	    <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FW"/>
+			<xsd:enumeration value="DPI"/>
+			<xsd:enumeration value="NAT"/>
+			<xsd:enumeration value="SPAM"/>
+			<xsd:enumeration value="CACHE"/>
+			<xsd:enumeration value="VPN"/>
+			<xsd:enumeration value="WEB_SERVER"/>
+			<xsd:enumeration value="WEB_CLIENT"/>
+			<xsd:enumeration value="MAIL_SERVER"/>
+			<xsd:enumeration value="MAIL_CLIENT"/>        
+	    </xsd:restriction>
+	    </xsd:simpleType>  	
+		 	    			   
+	<xsd:simpleType name="stringList">
+		<xsd:list itemType="xsd:string"/>
+	</xsd:simpleType>         
+</xsd:schema>

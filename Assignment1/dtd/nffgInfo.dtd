@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT network_services (nf_fg*,policy*)>
+
+<!ELEMENT nf_fg (node+)>
+<!ATTLIST nf_fg
+ name ID #REQUIRED
+ updateTime	CDATA	#REQUIRED
+	>
+<!ELEMENT node (link*)>
+<!ATTLIST node
+	name	ID #REQUIRED
+	functionalType (FW|DPI|NAT|SPAM|CACHE|VPN|WEB_SERVER|WEB_CLIENT|MAIL_SERVER|MAIL_CLIENT) #REQUIRED
+	>
+
+<!ELEMENT link EMPTY>
+<!ATTLIST link
+	name	ID 	#REQUIRED
+	source IDREF #REQUIRED
+	destination IDREF #REQUIRED
+	>
+
+<!ELEMENT policy ((ReachabilityPolicy | TraversalPolicy),VerificationResult)>
+
+<!ATTLIST policy
+	name	ID #REQUIRED
+	nffgname IDREF #REQUIRED
+	PolicyKind (REACHABILITY|TRAVERSAL) #REQUIRED
+	Holdtype (POSITIVE| NEGATIVE) #REQUIRED	 
+	>
+
+
+<!ELEMENT ReachabilityPolicy EMPTY>
+<!ATTLIST ReachabilityPolicy
+	SRCnode	IDREF #REQUIRED
+	DSTnode IDREF #REQUIRED
+	>
+	
+<!ELEMENT TraversalPolicy (TraversedFunctionalType)+>
+<!ATTLIST TraversalPolicy
+	SRCnode	IDREF #REQUIRED
+	DSTnode IDREF #REQUIRED	
+	>
+	
+<!ELEMENT TraversedFunctionalType EMPTY>
+<!ATTLIST TraversedFunctionalType
+	functionalType	(FW |DPI | NAT|SPAM|CACHE|VPN|WEB_SERVER|WEB_CLIENT|MAIL_SERVER|MAIL_CLIENT) #REQUIRED 
+	>
+
+<!ELEMENT VerificationResult (resultMsg)>
+<!ATTLIST VerificationResult
+	verificationTime CDATA "NULL"	
+	verResult (SATISFIED|VIOLATED|NOT-YET-VERIFIED) #REQUIRED	
+	>
+	
+<!ELEMENT resultMsg (#PCDATA)>

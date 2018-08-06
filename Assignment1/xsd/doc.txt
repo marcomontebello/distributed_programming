@@ -1,0 +1,103 @@
+network_services
+|
+|———NFFG(NffgType) * element 
+|	|—name attribute
+|	|—updateTime attribute
+|	|—Node * element 
+|		|—name attribute
+|		|—function 
+|		|	|----------	(FW,DPI,NAT,SPAM,CACHE,VPN,WEB_SERVER,WEB_CLIENT,MAIL_SERVER,MAIL_CLIENT) attr.
+|		|—link_ref  element
+|			|—name  attribute
+|			|—source  attribute
+|			|—destination attribute 
+|——POLICY (Policy) * element
+	|——name attr 
+	|——NF-FGname attr
+	|——PolicyKind attr (REACHABILITY|TRAVERSAL) 
+	|— policyLogic (Positive|Negative) 
+	|——SRCnode 	elem
+	|		|-------name
+	|—-DSTnode	elem
+	|		|-------name
+	|——TraversedFunctionalType  elem *
+	|		|--------(FW,DPI,NAT,SPAM,CACHE,VPN,WEB_SERVER,WEB_CLIENT,MAIL_SERVER,MAIL_CLIENT) *	
+	|—-VerificationResult 
+		|—resultMsg 
+		|—verificationTime 
+		|—result
+			|------- (SATISFIED | NOTSATISFIED | UNVERIFIED)
+	
+
+Note: Each entity's name belong to SSN(String/StringNumber) type to satisfy the constraints about names(First character is alphabetic and then alphanumeric)
+
+
+XSD SCHEMA Type | Description
+
+>network_services: is the root element of the xsd document. Is implemented as a sequence of Nffgs and Policies respectively defined 
+	by a NffgType and Policy in the schema.
+	Because of the constraint which impone that nffgs and policies must have unique names, in this scope are declared the 
+	key constraints:
+	-id_nffg
+	-id_policy
+
+
+>Nffg: is defined by NffgType. In its scope, under network_services, are declared several constraints:
+	-A key/unique constraint about nodes and links id because they must be unique inside the same nffg
+	-The keyref srcNode_ref and dstNode_ref are defined in this scope because all the nffg's links must have a source node and
+	a destination node that belongs to the same nffg.
+
+>NffgType is a complexType made of a sequence of minimum 1 node[nodeType] (up to unbounded) and the former attributes:
+	-name: is a SSN type (restriction of a xsd:string that match with the constraints of the assigment about NamedEntityReader class)
+	-updateTime: is a xsd:dateTime [an example of how Schema provides more details then DTD ]
+	-numberOfNodes: an xsd:nonNegativeInteger (facultative) to show a total number of nodes in the nffg 
+	
+>NodeType is a complexType made of a sequence of from 0 to unbounded  linkType elements (link_refs) and the attributes:
+	-name: is a SSN type (restriction of a xsd:string that match with the constraints of the assigment about NamedEntityReader class)
+	furthermore a node name must to be unique inside the nffg-> this specification is respected by introducing 
+	 the key=id_node right inside the scope of the nffg element.
+	-function: is a ns:functionType element
+	-numberOfLinks: an xsd:nonNegativeInteger (facultative) to show a total number of links belongings to a node.
+
+>LinkType:	each link is an empty model complexType (this is the reason why it figure an empty sequence in the definition);
+	 it contains only attributes that characterise the link itself.
+	 the srcNode and dstNode are simple xsd:string that refer to NodeId (are declared keyref in the scope of the nffg)   
+	The name of the link has to be unique inside the whole nffg; this specification is respected by introducing 
+	the unique=id_node construct right inside the scope of the nffg element just like the id_node above.
+	
+>functionType is a restriction of a simple type (enumeration) similar to what we have seen in the dtd.
+		
+>Policy: A policy could be a reachability policy or a traversal policy and its result is stored inside
+		a verificationResult element. Just because both reachability that traversal share the same elements/attributes,
+		these are defined inside the generic policy element and only if is a traversal policy it will contain
+		the sequence of functionType (belonging to the nodes) crossed by the source to the destination. The policy
+		is defined as a PolicyType in the schema.
+	
+>PolicyType A policy is characterised by a mandatory unique name like the other entities in the service provider system
+		and it refers mandatorily to an exsisting graph (the string nffg_ref is defined as a keyref to an nffg in the schema).
+		The specification about the uniqueness of the policy's name is respected introducing a key in the scope of
+		the root element(each policy in the network_services element must have a unique name)
+		This type contains srcNode and dstNode elements to specify the source and the destination of the path to verify
+		at least a reachability policy while could be indicated the functiontality of the nodes that must
+		be travesed to consider a Traversal policy satisfied(sequence of facultative functionalType elements).
+	-name: is a SSN type (restriction of a xsd:string that match with the constraints of the assigment about NamedEntityReader class)
+	-policyKind: is an enumeration value.
+	-nffg_ref: is a xsd:string defined as a keyref in the scope of the network_services. It refers to an existent nffg
+	-policyLogic: is an enumeration value.
+		
+	Furthermore each policy has to describe the result of its verification and this is done by a verificationResultType 
+	element defined in verificationResultType 
+	-verificationResult In this implementation is present in any case but with some field absent or in some particular state
+		if the policy is not yet verified(verificationTime for example)
+		
+				
+>verificationResultType: is defined by the result element  (resultType), a resultMessage that is a simple string
+ 		and the attribute:
+	-verificationTime that is a simple xsd:dataTime schema type and indicate the time of the last verification of the policy who belongs to. 
+
+ 		
+>resultType: has to be mandatorily one of these strings: SATISFIED or UNSATISFIED, accordingly the rules, if the policy 
+ 				has been verified or UNVERIFIED if not. 
+ 		
+ 
+ The policy constraint about the srcNode and dstNode  are considered at application level due to the difficulty to realise them with the data representation tree chosen 

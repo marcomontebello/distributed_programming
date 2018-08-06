@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns:network_services xmlns:ns="http://pad.polito.it/dp2/Assignment1/NetServices" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pad.polito.it/dp2/Assignment1/NetServices nffgInfo.xsd ">
+
+    <nffg name="Nffg1" updateTime="2016-09-25T19:42:20.000+02:00" numberOfNodes="22">
+        <node name="MAILSERVER4" function="MAIL_SERVER" numberOfLinks="8">
+            <link_ref name="Link12" srcNode="MAILSERVER4" dstNode="VPN12"/>
+            <link_ref name="Link56" srcNode="MAILSERVER4" dstNode="NAT8"/>
+            <link_ref name="Link130" srcNode="MAILSERVER4" dstNode="CACHE6"/>
+            <link_ref name="Link10" srcNode="MAILSERVER4" dstNode="DPI9"/>
+            <link_ref name="Link37" srcNode="MAILSERVER4" dstNode="FW4"/>
+            <link_ref name="Link13" srcNode="MAILSERVER4" dstNode="VPN13"/>
+            <link_ref name="Link24" srcNode="MAILSERVER4" dstNode="CACHE7"/>
+            <link_ref name="Link82" srcNode="MAILSERVER4" dstNode="NAT0"/>
+        </node>
+        <node name="MAILSERVER3" function="MAIL_SERVER" numberOfLinks="5">
+            <link_ref name="Link33" srcNode="MAILSERVER3" dstNode="VPN1"/>
+            <link_ref name="Link111" srcNode="MAILSERVER3" dstNode="VPN13"/>
+            <link_ref name="Link118" srcNode="MAILSERVER3" dstNode="NAT8"/>
+            <link_ref name="Link8" srcNode="MAILSERVER3" dstNode="DPI9"/>
+            <link_ref name="Link104" srcNode="MAILSERVER3" dstNode="SPAM5"/>
+        </node>
+        <node name="FW4" function="FW" numberOfLinks="7">
+            <link_ref name="Link22" srcNode="FW4" dstNode="NAT8"/>
+            <link_ref name="Link65" srcNode="FW4" dstNode="VPN14"/>
+            <link_ref name="Link42" srcNode="FW4" dstNode="SPAM5"/>
+            <link_ref name="Link53" srcNode="FW4" dstNode="MAILSERVER4"/>
+            <link_ref name="Link110" srcNode="FW4" dstNode="NAT3"/>
+            <link_ref name="Link52" srcNode="FW4" dstNode="CACHE7"/>
+            <link_ref name="Link50" srcNode="FW4" dstNode="VPN12"/>
+        </node>
+        <node name="NAT10" function="NAT" numberOfLinks="5">
+            <link_ref name="Link89" srcNode="NAT10" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link76" srcNode="NAT10" dstNode="VPN12"/>
+            <link_ref name="Link14" srcNode="NAT10" dstNode="VPN1"/>
+            <link_ref name="Link58" srcNode="NAT10" dstNode="DPI9"/>
+            <link_ref name="Link73" srcNode="NAT10" dstNode="SPAM2"/>
+        </node>
+        <node name="NAT0" function="NAT" numberOfLinks="4">
+            <link_ref name="Link131" srcNode="NAT0" dstNode="NAT10"/>
+            <link_ref name="Link43" srcNode="NAT0" dstNode="CACHE7"/>
+            <link_ref name="Link1" srcNode="NAT0" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link124" srcNode="NAT0" dstNode="VPN1"/>
+        </node>
+        <node name="MAILSERVER1" function="MAIL_SERVER" numberOfLinks="4">
+            <link_ref name="Link81" srcNode="MAILSERVER1" dstNode="VPN14"/>
+            <link_ref name="Link106" srcNode="MAILSERVER1" dstNode="CACHE7"/>
+            <link_ref name="Link4" srcNode="MAILSERVER1" dstNode="CACHE15"/>
+            <link_ref name="Link41" srcNode="MAILSERVER1" dstNode="VPN1"/>
+        </node>
+        <node name="MAILSERVER0" function="MAIL_SERVER" numberOfLinks="3">
+            <link_ref name="Link31" srcNode="MAILSERVER0" dstNode="CACHE7"/>
+            <link_ref name="Link2" srcNode="MAILSERVER0" dstNode="CACHE15"/>
+            <link_ref name="Link126" srcNode="MAILSERVER0" dstNode="VPN1"/>
+        </node>
+        <node name="FW11" function="FW" numberOfLinks="3">
+            <link_ref name="Link46" srcNode="FW11" dstNode="CACHE7"/>
+            <link_ref name="Link74" srcNode="FW11" dstNode="VPN14"/>
+            <link_ref name="Link71" srcNode="FW11" dstNode="WEBCLIENT0"/>
+        </node>
+        <node name="NAT8" function="NAT" numberOfLinks="7">
+            <link_ref name="Link98" srcNode="NAT8" dstNode="DPI9"/>
+            <link_ref name="Link16" srcNode="NAT8" dstNode="NAT0"/>
+            <link_ref name="Link26" srcNode="NAT8" dstNode="NAT10"/>
+            <link_ref name="Link68" srcNode="NAT8" dstNode="FW4"/>
+            <link_ref name="Link79" srcNode="NAT8" dstNode="VPN1"/>
+            <link_ref name="Link105" srcNode="NAT8" dstNode="CACHE7"/>
+            <link_ref name="Link18" srcNode="NAT8" dstNode="WEBCLIENT0"/>
+        </node>
+        <node name="VPN12" function="VPN" numberOfLinks="8">
+            <link_ref name="Link64" srcNode="VPN12" dstNode="VPN1"/>
+            <link_ref name="Link15" srcNode="VPN12" dstNode="WEBSERVER2"/>
+            <link_ref name="Link59" srcNode="VPN12" dstNode="NAT10"/>
+            <link_ref name="Link91" srcNode="VPN12" dstNode="NAT8"/>
+            <link_ref name="Link119" srcNode="VPN12" dstNode="CACHE6"/>
+            <link_ref name="Link17" srcNode="VPN12" dstNode="FW4"/>
+            <link_ref name="Link129" srcNode="VPN12" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link84" srcNode="VPN12" dstNode="NAT3"/>
+        </node>
+        <node name="VPN1" function="VPN" numberOfLinks="8">
+            <link_ref name="Link77" srcNode="VPN1" dstNode="VPN13"/>
+            <link_ref name="Link75" srcNode="VPN1" dstNode="NAT8"/>
+            <link_ref name="Link80" srcNode="VPN1" dstNode="FW11"/>
+            <link_ref name="Link39" srcNode="VPN1" dstNode="SPAM2"/>
+            <link_ref name="Link30" srcNode="VPN1" dstNode="DPI9"/>
+            <link_ref name="Link102" srcNode="VPN1" dstNode="MAILSERVER1"/>
+            <link_ref name="Link95" srcNode="VPN1" dstNode="CACHE7"/>
+            <link_ref name="Link94" srcNode="VPN1" dstNode="MAILSERVER0"/>
+        </node>
+        <node name="NAT3" function="NAT" numberOfLinks="9">
+            <link_ref name="Link97" srcNode="NAT3" dstNode="CACHE6"/>
+            <link_ref name="Link38" srcNode="NAT3" dstNode="SPAM2"/>
+            <link_ref name="Link19" srcNode="NAT3" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link107" srcNode="NAT3" dstNode="NAT0"/>
+            <link_ref name="Link85" srcNode="NAT3" dstNode="FW4"/>
+            <link_ref name="Link112" srcNode="NAT3" dstNode="CACHE15"/>
+            <link_ref name="Link61" srcNode="NAT3" dstNode="WEBSERVER2"/>
+            <link_ref name="Link114" srcNode="NAT3" dstNode="VPN12"/>
+            <link_ref name="Link125" srcNode="NAT3" dstNode="CACHE7"/>
+        </node>
+        <node name="VPN14" function="VPN" numberOfLinks="5">
+            <link_ref name="Link66" srcNode="VPN14" dstNode="NAT0"/>
+            <link_ref name="Link54" srcNode="VPN14" dstNode="CACHE15"/>
+            <link_ref name="Link121" srcNode="VPN14" dstNode="MAILSERVER3"/>
+            <link_ref name="Link113" srcNode="VPN14" dstNode="FW11"/>
+            <link_ref name="Link51" srcNode="VPN14" dstNode="CACHE7"/>
+        </node>
+        <node name="VPN13" function="VPN" numberOfLinks="8">
+            <link_ref name="Link78" srcNode="VPN13" dstNode="CACHE7"/>
+            <link_ref name="Link20" srcNode="VPN13" dstNode="WEBSERVER2"/>
+            <link_ref name="Link35" srcNode="VPN13" dstNode="NAT10"/>
+            <link_ref name="Link116" srcNode="VPN13" dstNode="VPN14"/>
+            <link_ref name="Link127" srcNode="VPN13" dstNode="NAT3"/>
+            <link_ref name="Link101" srcNode="VPN13" dstNode="MAILSERVER0"/>
+            <link_ref name="Link115" srcNode="VPN13" dstNode="VPN12"/>
+            <link_ref name="Link93" srcNode="VPN13" dstNode="FW4"/>
+        </node>
+        <node name="CACHE15" function="CACHE" numberOfLinks="8">
+            <link_ref name="Link120" srcNode="CACHE15" dstNode="NAT0"/>
+            <link_ref name="Link88" srcNode="CACHE15" dstNode="VPN1"/>
+            <link_ref name="Link99" srcNode="CACHE15" dstNode="NAT8"/>
+            <link_ref name="Link49" srcNode="CACHE15" dstNode="VPN13"/>
+            <link_ref name="Link128" srcNode="CACHE15" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link3" srcNode="CACHE15" dstNode="MAILSERVER0"/>
+            <link_ref name="Link5" srcNode="CACHE15" dstNode="MAILSERVER1"/>
+            <link_ref name="Link72" srcNode="CACHE15" dstNode="DPI9"/>
+        </node>
+        <node name="SPAM5" function="SPAM" numberOfLinks="4">
+            <link_ref name="Link67" srcNode="SPAM5" dstNode="NAT0"/>
+            <link_ref name="Link21" srcNode="SPAM5" dstNode="MAILSERVER4"/>
+            <link_ref name="Link25" srcNode="SPAM5" dstNode="CACHE6"/>
+            <link_ref name="Link47" srcNode="SPAM5" dstNode="FW4"/>
+        </node>
+        <node name="CACHE6" function="CACHE" numberOfLinks="6">
+            <link_ref name="Link44" srcNode="CACHE6" dstNode="NAT3"/>
+            <link_ref name="Link100" srcNode="CACHE6" dstNode="MAILSERVER0"/>
+            <link_ref name="Link122" srcNode="CACHE6" dstNode="VPN13"/>
+            <link_ref name="Link70" srcNode="CACHE6" dstNode="NAT10"/>
+            <link_ref name="Link90" srcNode="CACHE6" dstNode="DPI9"/>
+            <link_ref name="Link63" srcNode="CACHE6" dstNode="VPN14"/>
+        </node>
+        <node name="DPI9" function="DPI" numberOfLinks="7">
+            <link_ref name="Link34" srcNode="DPI9" dstNode="MAILSERVER0"/>
+            <link_ref name="Link11" srcNode="DPI9" dstNode="MAILSERVER4"/>
+            <link_ref name="Link87" srcNode="DPI9" dstNode="MAILSERVER1"/>
+            <link_ref name="Link48" srcNode="DPI9" dstNode="SPAM5"/>
+            <link_ref name="Link7" srcNode="DPI9" dstNode="WEBSERVER2"/>
+            <link_ref name="Link9" srcNode="DPI9" dstNode="MAILSERVER3"/>
+            <link_ref name="Link60" srcNode="DPI9" dstNode="CACHE6"/>
+        </node>
+        <node name="WEBCLIENT0" function="WEB_CLIENT" numberOfLinks="5">
+            <link_ref name="Link27" srcNode="WEBCLIENT0" dstNode="FW11"/>
+            <link_ref name="Link0" srcNode="WEBCLIENT0" dstNode="NAT0"/>
+            <link_ref name="Link29" srcNode="WEBCLIENT0" dstNode="VPN14"/>
+            <link_ref name="Link123" srcNode="WEBCLIENT0" dstNode="CACHE7"/>
+            <link_ref name="Link103" srcNode="WEBCLIENT0" dstNode="NAT3"/>
+        </node>
+        <node name="CACHE7" function="CACHE" numberOfLinks="6">
+            <link_ref name="Link23" srcNode="CACHE7" dstNode="FW11"/>
+            <link_ref name="Link45" srcNode="CACHE7" dstNode="SPAM5"/>
+            <link_ref name="Link86" srcNode="CACHE7" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link57" srcNode="CACHE7" dstNode="DPI9"/>
+            <link_ref name="Link28" srcNode="CACHE7" dstNode="NAT0"/>
+            <link_ref name="Link40" srcNode="CACHE7" dstNode="VPN14"/>
+        </node>
+        <node name="WEBSERVER2" function="WEB_SERVER" numberOfLinks="5">
+            <link_ref name="Link92" srcNode="WEBSERVER2" dstNode="VPN14"/>
+            <link_ref name="Link6" srcNode="WEBSERVER2" dstNode="DPI9"/>
+            <link_ref name="Link96" srcNode="WEBSERVER2" dstNode="NAT3"/>
+            <link_ref name="Link62" srcNode="WEBSERVER2" dstNode="VPN13"/>
+            <link_ref name="Link83" srcNode="WEBSERVER2" dstNode="CACHE7"/>
+        </node>
+        <node name="SPAM2" function="SPAM" numberOfLinks="7">
+            <link_ref name="Link55" srcNode="SPAM2" dstNode="FW11"/>
+            <link_ref name="Link32" srcNode="SPAM2" dstNode="CACHE7"/>
+            <link_ref name="Link109" srcNode="SPAM2" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link36" srcNode="SPAM2" dstNode="VPN14"/>
+            <link_ref name="Link69" srcNode="SPAM2" dstNode="MAILSERVER0"/>
+            <link_ref name="Link117" srcNode="SPAM2" dstNode="VPN1"/>
+            <link_ref name="Link108" srcNode="SPAM2" dstNode="CACHE15"/>
+        </node>
+    </nffg>
+    <nffg name="Nffg0" updateTime="2016-09-26T09:23:20.000+02:00" numberOfNodes="31">
+        <node name="DPI17" function="DPI" numberOfLinks="13">
+            <link_ref name="Link186" srcNode="DPI17" dstNode="WEBSERVER3"/>
+            <link_ref name="Link230" srcNode="DPI17" dstNode="DPI18"/>
+            <link_ref name="Link55" srcNode="DPI17" dstNode="CACHE11"/>
+            <link_ref name="Link133" srcNode="DPI17" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link121" srcNode="DPI17" dstNode="NAT4"/>
+            <link_ref name="Link38" srcNode="DPI17" dstNode="VPN2"/>
+            <link_ref name="Link59" srcNode="DPI17" dstNode="CACHE8"/>
+            <link_ref name="Link68" srcNode="DPI17" dstNode="FW10"/>
+            <link_ref name="Link260" srcNode="DPI17" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link105" srcNode="DPI17" dstNode="FW13"/>
+            <link_ref name="Link211" srcNode="DPI17" dstNode="DPI6"/>
+            <link_ref name="Link277" srcNode="DPI17" dstNode="MAILCLIENT6"/>
+            <link_ref name="Link93" srcNode="DPI17" dstNode="FW16"/>
+        </node>
+        <node name="SPAM15" function="SPAM" numberOfLinks="9">
+            <link_ref name="Link65" srcNode="SPAM15" dstNode="CACHE7"/>
+            <link_ref name="Link188" srcNode="SPAM15" dstNode="DPI6"/>
+            <link_ref name="Link254" srcNode="SPAM15" dstNode="DPI17"/>
+            <link_ref name="Link261" srcNode="SPAM15" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link205" srcNode="SPAM15" dstNode="FW9"/>
+            <link_ref name="Link29" srcNode="SPAM15" dstNode="WEBSERVER0"/>
+            <link_ref name="Link124" srcNode="SPAM15" dstNode="NAT4"/>
+            <link_ref name="Link7" srcNode="SPAM15" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link136" srcNode="SPAM15" dstNode="SPAM0"/>
+        </node>
+        <node name="DPI18" function="DPI" numberOfLinks="9">
+            <link_ref name="Link86" srcNode="DPI18" dstNode="DPI6"/>
+            <link_ref name="Link264" srcNode="DPI18" dstNode="DPI17"/>
+            <link_ref name="Link171" srcNode="DPI18" dstNode="VPN3"/>
+            <link_ref name="Link270" srcNode="DPI18" dstNode="WEBSERVER3"/>
+            <link_ref name="Link46" srcNode="DPI18" dstNode="CACHE11"/>
+            <link_ref name="Link70" srcNode="DPI18" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link139" srcNode="DPI18" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link60" srcNode="DPI18" dstNode="MAILCLIENT2"/>
+            <link_ref name="Link213" srcNode="DPI18" dstNode="DPI12"/>
+        </node>
+        <node name="FW9" function="FW" numberOfLinks="10">
+            <link_ref name="Link34" srcNode="FW9" dstNode="NAT4"/>
+            <link_ref name="Link43" srcNode="FW9" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link155" srcNode="FW9" dstNode="MAILSERVER2"/>
+            <link_ref name="Link64" srcNode="FW9" dstNode="DPI17"/>
+            <link_ref name="Link143" srcNode="FW9" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link140" srcNode="FW9" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link85" srcNode="FW9" dstNode="DPI6"/>
+            <link_ref name="Link135" srcNode="FW9" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link255" srcNode="FW9" dstNode="FW13"/>
+            <link_ref name="Link236" srcNode="FW9" dstNode="VPN2"/>
+        </node>
+        <node name="MAILCLIENT5" function="MAIL_CLIENT" numberOfLinks="9">
+            <link_ref name="Link174" srcNode="MAILCLIENT5" dstNode="SPAM0"/>
+            <link_ref name="Link10" srcNode="MAILCLIENT5" dstNode="CACHE8"/>
+            <link_ref name="Link122" srcNode="MAILCLIENT5" dstNode="DPI6"/>
+            <link_ref name="Link165" srcNode="MAILCLIENT5" dstNode="CACHE11"/>
+            <link_ref name="Link272" srcNode="MAILCLIENT5" dstNode="CACHE7"/>
+            <link_ref name="Link116" srcNode="MAILCLIENT5" dstNode="VPN2"/>
+            <link_ref name="Link74" srcNode="MAILCLIENT5" dstNode="FW9"/>
+            <link_ref name="Link126" srcNode="MAILCLIENT5" dstNode="NAT1"/>
+            <link_ref name="Link203" srcNode="MAILCLIENT5" dstNode="CACHE14"/>
+        </node>
+        <node name="MAILCLIENT4" function="MAIL_CLIENT" numberOfLinks="8">
+            <link_ref name="Link153" srcNode="MAILCLIENT4" dstNode="CACHE14"/>
+            <link_ref name="Link219" srcNode="MAILCLIENT4" dstNode="DPI18"/>
+            <link_ref name="Link36" srcNode="MAILCLIENT4" dstNode="FW10"/>
+            <link_ref name="Link128" srcNode="MAILCLIENT4" dstNode="SPAM0"/>
+            <link_ref name="Link30" srcNode="MAILCLIENT4" dstNode="DPI12"/>
+            <link_ref name="Link8" srcNode="MAILCLIENT4" dstNode="FW16"/>
+            <link_ref name="Link83" srcNode="MAILCLIENT4" dstNode="DPI17"/>
+            <link_ref name="Link169" srcNode="MAILCLIENT4" dstNode="CACHE11"/>
+        </node>
+        <node name="FW10" function="FW" numberOfLinks="7">
+            <link_ref name="Link54" srcNode="FW10" dstNode="VPN2"/>
+            <link_ref name="Link100" srcNode="FW10" dstNode="CACHE8"/>
+            <link_ref name="Link111" srcNode="FW10" dstNode="CACHE14"/>
+            <link_ref name="Link150" srcNode="FW10" dstNode="NAT4"/>
+            <link_ref name="Link81" srcNode="FW10" dstNode="DPI12"/>
+            <link_ref name="Link223" srcNode="FW10" dstNode="FW13"/>
+            <link_ref name="Link214" srcNode="FW10" dstNode="MAILSERVER2"/>
+        </node>
+        <node name="FW13" function="FW" numberOfLinks="10">
+            <link_ref name="Link263" srcNode="FW13" dstNode="CACHE7"/>
+            <link_ref name="Link33" srcNode="FW13" dstNode="CACHE8"/>
+            <link_ref name="Link44" srcNode="FW13" dstNode="NAT4"/>
+            <link_ref name="Link21" srcNode="FW13" dstNode="MAILSERVER2"/>
+            <link_ref name="Link35" srcNode="FW13" dstNode="SPAM0"/>
+            <link_ref name="Link117" srcNode="FW13" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link229" srcNode="FW13" dstNode="WEBSERVER1"/>
+            <link_ref name="Link95" srcNode="FW13" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link178" srcNode="FW13" dstNode="DPI6"/>
+            <link_ref name="Link266" srcNode="FW13" dstNode="SPAM5"/>
+        </node>
+        <node name="MAILCLIENT2" function="MAIL_CLIENT" numberOfLinks="6">
+            <link_ref name="Link45" srcNode="MAILCLIENT2" dstNode="DPI12"/>
+            <link_ref name="Link241" srcNode="MAILCLIENT2" dstNode="SPAM0"/>
+            <link_ref name="Link66" srcNode="MAILCLIENT2" dstNode="DPI17"/>
+            <link_ref name="Link32" srcNode="MAILCLIENT2" dstNode="VPN2"/>
+            <link_ref name="Link271" srcNode="MAILCLIENT2" dstNode="CACHE7"/>
+            <link_ref name="Link4" srcNode="MAILCLIENT2" dstNode="FW16"/>
+        </node>
+        <node name="WEBCLIENT7" function="WEB_CLIENT" numberOfLinks="7">
+            <link_ref name="Link89" srcNode="WEBCLIENT7" dstNode="DPI6"/>
+            <link_ref name="Link177" srcNode="WEBCLIENT7" dstNode="SPAM15"/>
+            <link_ref name="Link31" srcNode="WEBCLIENT7" dstNode="SPAM5"/>
+            <link_ref name="Link26" srcNode="WEBCLIENT7" dstNode="CACHE14"/>
+            <link_ref name="Link14" srcNode="WEBCLIENT7" dstNode="DPI12"/>
+            <link_ref name="Link101" srcNode="WEBCLIENT7" dstNode="DPI17"/>
+            <link_ref name="Link104" srcNode="WEBCLIENT7" dstNode="NAT4"/>
+        </node>
+        <node name="MAILCLIENT6" function="MAIL_CLIENT" numberOfLinks="8">
+            <link_ref name="Link12" srcNode="MAILCLIENT6" dstNode="FW16"/>
+            <link_ref name="Link175" srcNode="MAILCLIENT6" dstNode="FW10"/>
+            <link_ref name="Link47" srcNode="MAILCLIENT6" dstNode="SPAM0"/>
+            <link_ref name="Link191" srcNode="MAILCLIENT6" dstNode="CACHE8"/>
+            <link_ref name="Link207" srcNode="MAILCLIENT6" dstNode="SPAM5"/>
+            <link_ref name="Link63" srcNode="MAILCLIENT6" dstNode="CACHE11"/>
+            <link_ref name="Link73" srcNode="MAILCLIENT6" dstNode="DPI6"/>
+            <link_ref name="Link145" srcNode="MAILCLIENT6" dstNode="FW13"/>
+        </node>
+        <node name="FW16" function="FW" numberOfLinks="15">
+            <link_ref name="Link163" srcNode="FW16" dstNode="SPAM15"/>
+            <link_ref name="Link262" srcNode="FW16" dstNode="FW10"/>
+            <link_ref name="Link87" srcNode="FW16" dstNode="MAILSERVER2"/>
+            <link_ref name="Link198" srcNode="FW16" dstNode="CACHE14"/>
+            <link_ref name="Link192" srcNode="FW16" dstNode="WEBSERVER3"/>
+            <link_ref name="Link250" srcNode="FW16" dstNode="DPI17"/>
+            <link_ref name="Link13" srcNode="FW16" dstNode="MAILCLIENT6"/>
+            <link_ref name="Link161" srcNode="FW16" dstNode="NAT1"/>
+            <link_ref name="Link227" srcNode="FW16" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link5" srcNode="FW16" dstNode="MAILCLIENT2"/>
+            <link_ref name="Link206" srcNode="FW16" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link96" srcNode="FW16" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link179" srcNode="FW16" dstNode="SPAM5"/>
+            <link_ref name="Link9" srcNode="FW16" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link224" srcNode="FW16" dstNode="CACHE8"/>
+        </node>
+        <node name="WEBCLIENT3" function="WEB_CLIENT" numberOfLinks="5">
+            <link_ref name="Link164" srcNode="WEBCLIENT3" dstNode="CACHE14"/>
+            <link_ref name="Link57" srcNode="WEBCLIENT3" dstNode="CACHE7"/>
+            <link_ref name="Link79" srcNode="WEBCLIENT3" dstNode="CACHE8"/>
+            <link_ref name="Link6" srcNode="WEBCLIENT3" dstNode="SPAM15"/>
+            <link_ref name="Link41" srcNode="WEBCLIENT3" dstNode="DPI12"/>
+        </node>
+        <node name="WEBSERVER3" function="WEB_SERVER" numberOfLinks="7">
+            <link_ref name="Link22" srcNode="WEBSERVER3" dstNode="CACHE11"/>
+            <link_ref name="Link98" srcNode="WEBSERVER3" dstNode="VPN2"/>
+            <link_ref name="Link181" srcNode="WEBSERVER3" dstNode="DPI6"/>
+            <link_ref name="Link138" srcNode="WEBSERVER3" dstNode="SPAM15"/>
+            <link_ref name="Link215" srcNode="WEBSERVER3" dstNode="FW9"/>
+            <link_ref name="Link61" srcNode="WEBSERVER3" dstNode="FW13"/>
+            <link_ref name="Link148" srcNode="WEBSERVER3" dstNode="SPAM0"/>
+        </node>
+        <node name="WEBCLIENT0" function="WEB_CLIENT" numberOfLinks="10">
+            <link_ref name="Link88" srcNode="WEBCLIENT0" dstNode="FW10"/>
+            <link_ref name="Link144" srcNode="WEBCLIENT0" dstNode="VPN2"/>
+            <link_ref name="Link276" srcNode="WEBCLIENT0" dstNode="CACHE8"/>
+            <link_ref name="Link110" srcNode="WEBCLIENT0" dstNode="NAT4"/>
+            <link_ref name="Link0" srcNode="WEBCLIENT0" dstNode="DPI6"/>
+            <link_ref name="Link184" srcNode="WEBCLIENT0" dstNode="VPN3"/>
+            <link_ref name="Link194" srcNode="WEBCLIENT0" dstNode="DPI12"/>
+            <link_ref name="Link237" srcNode="WEBCLIENT0" dstNode="DPI18"/>
+            <link_ref name="Link259" srcNode="WEBCLIENT0" dstNode="FW13"/>
+            <link_ref name="Link235" srcNode="WEBCLIENT0" dstNode="FW9"/>
+        </node>
+        <node name="WEBSERVER0" function="WEB_SERVER" numberOfLinks="10">
+            <link_ref name="Link240" srcNode="WEBSERVER0" dstNode="SPAM15"/>
+            <link_ref name="Link76" srcNode="WEBSERVER0" dstNode="VPN3"/>
+            <link_ref name="Link97" srcNode="WEBSERVER0" dstNode="NAT1"/>
+            <link_ref name="Link16" srcNode="WEBSERVER0" dstNode="VPN2"/>
+            <link_ref name="Link69" srcNode="WEBSERVER0" dstNode="CACHE11"/>
+            <link_ref name="Link80" srcNode="WEBSERVER0" dstNode="SPAM0"/>
+            <link_ref name="Link113" srcNode="WEBSERVER0" dstNode="CACHE14"/>
+            <link_ref name="Link201" srcNode="WEBSERVER0" dstNode="FW9"/>
+            <link_ref name="Link258" srcNode="WEBSERVER0" dstNode="DPI6"/>
+            <link_ref name="Link158" srcNode="WEBSERVER0" dstNode="DPI18"/>
+        </node>
+        <node name="CACHE7" function="CACHE" numberOfLinks="10">
+            <link_ref name="Link131" srcNode="CACHE7" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link176" srcNode="CACHE7" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link49" srcNode="CACHE7" dstNode="SPAM15"/>
+            <link_ref name="Link109" srcNode="CACHE7" dstNode="FW13"/>
+            <link_ref name="Link106" srcNode="CACHE7" dstNode="CACHE14"/>
+            <link_ref name="Link91" srcNode="CACHE7" dstNode="MAILSERVER2"/>
+            <link_ref name="Link180" srcNode="CACHE7" dstNode="FW10"/>
+            <link_ref name="Link234" srcNode="CACHE7" dstNode="SPAM0"/>
+            <link_ref name="Link256" srcNode="CACHE7" dstNode="FW16"/>
+            <link_ref name="Link156" srcNode="CACHE7" dstNode="WEBSERVER1"/>
+        </node>
+        <node name="WEBCLIENT1" function="WEB_CLIENT" numberOfLinks="8">
+            <link_ref name="Link142" srcNode="WEBCLIENT1" dstNode="DPI6"/>
+            <link_ref name="Link197" srcNode="WEBCLIENT1" dstNode="DPI18"/>
+            <link_ref name="Link130" srcNode="WEBCLIENT1" dstNode="FW16"/>
+            <link_ref name="Link2" srcNode="WEBCLIENT1" dstNode="SPAM5"/>
+            <link_ref name="Link218" srcNode="WEBCLIENT1" dstNode="CACHE7"/>
+            <link_ref name="Link51" srcNode="WEBCLIENT1" dstNode="SPAM15"/>
+            <link_ref name="Link94" srcNode="WEBCLIENT1" dstNode="NAT1"/>
+            <link_ref name="Link82" srcNode="WEBCLIENT1" dstNode="FW13"/>
+        </node>
+        <node name="WEBSERVER1" function="WEB_SERVER" numberOfLinks="5">
+            <link_ref name="Link187" srcNode="WEBSERVER1" dstNode="DPI6"/>
+            <link_ref name="Link24" srcNode="WEBSERVER1" dstNode="FW9"/>
+            <link_ref name="Link18" srcNode="WEBSERVER1" dstNode="SPAM0"/>
+            <link_ref name="Link90" srcNode="WEBSERVER1" dstNode="CACHE7"/>
+            <link_ref name="Link62" srcNode="WEBSERVER1" dstNode="CACHE11"/>
+        </node>
+        <node name="CACHE8" function="CACHE" numberOfLinks="9">
+            <link_ref name="Link11" srcNode="CACHE8" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link243" srcNode="CACHE8" dstNode="WEBSERVER3"/>
+            <link_ref name="Link53" srcNode="CACHE8" dstNode="CACHE14"/>
+            <link_ref name="Link182" srcNode="CACHE8" dstNode="SPAM0"/>
+            <link_ref name="Link172" srcNode="CACHE8" dstNode="WEBSERVER0"/>
+            <link_ref name="Link249" srcNode="CACHE8" dstNode="MAILCLIENT2"/>
+            <link_ref name="Link217" srcNode="CACHE8" dstNode="DPI18"/>
+            <link_ref name="Link168" srcNode="CACHE8" dstNode="FW10"/>
+            <link_ref name="Link112" srcNode="CACHE8" dstNode="DPI6"/>
+        </node>
+        <node name="MAILSERVER2" function="MAIL_SERVER" numberOfLinks="5">
+            <link_ref name="Link20" srcNode="MAILSERVER2" dstNode="FW13"/>
+            <link_ref name="Link231" srcNode="MAILSERVER2" dstNode="FW16"/>
+            <link_ref name="Link275" srcNode="MAILSERVER2" dstNode="VPN2"/>
+            <link_ref name="Link248" srcNode="MAILSERVER2" dstNode="CACHE8"/>
+            <link_ref name="Link137" srcNode="MAILSERVER2" dstNode="DPI12"/>
+        </node>
+        <node name="SPAM0" function="SPAM" numberOfLinks="9">
+            <link_ref name="Link185" srcNode="SPAM0" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link210" srcNode="SPAM0" dstNode="FW9"/>
+            <link_ref name="Link242" srcNode="SPAM0" dstNode="CACHE14"/>
+            <link_ref name="Link25" srcNode="SPAM0" dstNode="CACHE7"/>
+            <link_ref name="Link19" srcNode="SPAM0" dstNode="WEBSERVER1"/>
+            <link_ref name="Link129" srcNode="SPAM0" dstNode="VPN2"/>
+            <link_ref name="Link233" srcNode="SPAM0" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link159" srcNode="SPAM0" dstNode="WEBSERVER3"/>
+            <link_ref name="Link246" srcNode="SPAM0" dstNode="MAILSERVER2"/>
+        </node>
+        <node name="NAT1" function="NAT" numberOfLinks="14">
+            <link_ref name="Link274" srcNode="NAT1" dstNode="DPI18"/>
+            <link_ref name="Link221" srcNode="NAT1" dstNode="FW16"/>
+            <link_ref name="Link132" srcNode="NAT1" dstNode="CACHE14"/>
+            <link_ref name="Link58" srcNode="NAT1" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link92" srcNode="NAT1" dstNode="DPI17"/>
+            <link_ref name="Link149" srcNode="NAT1" dstNode="DPI12"/>
+            <link_ref name="Link204" srcNode="NAT1" dstNode="WEBSERVER1"/>
+            <link_ref name="Link239" srcNode="NAT1" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link157" srcNode="NAT1" dstNode="SPAM0"/>
+            <link_ref name="Link212" srcNode="NAT1" dstNode="FW9"/>
+            <link_ref name="Link245" srcNode="NAT1" dstNode="CACHE7"/>
+            <link_ref name="Link200" srcNode="NAT1" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link247" srcNode="NAT1" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link269" srcNode="NAT1" dstNode="VPN3"/>
+        </node>
+        <node name="VPN2" function="VPN" numberOfLinks="9">
+            <link_ref name="Link120" srcNode="VPN2" dstNode="CACHE7"/>
+            <link_ref name="Link152" srcNode="VPN2" dstNode="MAILCLIENT6"/>
+            <link_ref name="Link273" srcNode="VPN2" dstNode="SPAM0"/>
+            <link_ref name="Link265" srcNode="VPN2" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link238" srcNode="VPN2" dstNode="DPI12"/>
+            <link_ref name="Link226" srcNode="VPN2" dstNode="NAT4"/>
+            <link_ref name="Link17" srcNode="VPN2" dstNode="WEBSERVER0"/>
+            <link_ref name="Link134" srcNode="VPN2" dstNode="SPAM5"/>
+            <link_ref name="Link103" srcNode="VPN2" dstNode="WEBCLIENT0"/>
+        </node>
+        <node name="VPN3" function="VPN" numberOfLinks="5">
+            <link_ref name="Link251" srcNode="VPN3" dstNode="NAT4"/>
+            <link_ref name="Link232" srcNode="VPN3" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link50" srcNode="VPN3" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link115" srcNode="VPN3" dstNode="FW16"/>
+            <link_ref name="Link202" srcNode="VPN3" dstNode="MAILCLIENT6"/>
+        </node>
+        <node name="NAT4" function="NAT" numberOfLinks="13">
+            <link_ref name="Link208" srcNode="NAT4" dstNode="FW13"/>
+            <link_ref name="Link39" srcNode="NAT4" dstNode="DPI12"/>
+            <link_ref name="Link67" srcNode="NAT4" dstNode="FW9"/>
+            <link_ref name="Link196" srcNode="NAT4" dstNode="FW16"/>
+            <link_ref name="Link166" srcNode="NAT4" dstNode="DPI17"/>
+            <link_ref name="Link154" srcNode="NAT4" dstNode="VPN3"/>
+            <link_ref name="Link48" srcNode="NAT4" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link151" srcNode="NAT4" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link228" srcNode="NAT4" dstNode="DPI6"/>
+            <link_ref name="Link52" srcNode="NAT4" dstNode="MAILSERVER2"/>
+            <link_ref name="Link146" srcNode="NAT4" dstNode="FW10"/>
+            <link_ref name="Link71" srcNode="NAT4" dstNode="CACHE11"/>
+            <link_ref name="Link125" srcNode="NAT4" dstNode="MAILCLIENT2"/>
+        </node>
+        <node name="DPI6" function="DPI" numberOfLinks="9">
+            <link_ref name="Link252" srcNode="DPI6" dstNode="NAT1"/>
+            <link_ref name="Link99" srcNode="DPI6" dstNode="SPAM5"/>
+            <link_ref name="Link170" srcNode="DPI6" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link195" srcNode="DPI6" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link1" srcNode="DPI6" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link108" srcNode="DPI6" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link102" srcNode="DPI6" dstNode="CACHE7"/>
+            <link_ref name="Link84" srcNode="DPI6" dstNode="NAT4"/>
+            <link_ref name="Link244" srcNode="DPI6" dstNode="VPN2"/>
+        </node>
+        <node name="SPAM5" function="SPAM" numberOfLinks="13">
+            <link_ref name="Link190" srcNode="SPAM5" dstNode="CACHE14"/>
+            <link_ref name="Link77" srcNode="SPAM5" dstNode="SPAM15"/>
+            <link_ref name="Link199" srcNode="SPAM5" dstNode="CACHE7"/>
+            <link_ref name="Link220" srcNode="SPAM5" dstNode="WEBSERVER1"/>
+            <link_ref name="Link37" srcNode="SPAM5" dstNode="MAILCLIENT6"/>
+            <link_ref name="Link3" srcNode="SPAM5" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link127" srcNode="SPAM5" dstNode="SPAM0"/>
+            <link_ref name="Link119" srcNode="SPAM5" dstNode="WEBSERVER3"/>
+            <link_ref name="Link107" srcNode="SPAM5" dstNode="MAILCLIENT2"/>
+            <link_ref name="Link189" srcNode="SPAM5" dstNode="DPI12"/>
+            <link_ref name="Link225" srcNode="SPAM5" dstNode="MAILSERVER2"/>
+            <link_ref name="Link114" srcNode="SPAM5" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link268" srcNode="SPAM5" dstNode="CACHE11"/>
+        </node>
+        <node name="CACHE14" function="CACHE" numberOfLinks="8">
+            <link_ref name="Link56" srcNode="CACHE14" dstNode="SPAM15"/>
+            <link_ref name="Link141" srcNode="CACHE14" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link209" srcNode="CACHE14" dstNode="WEBCLIENT3"/>
+            <link_ref name="Link173" srcNode="CACHE14" dstNode="DPI18"/>
+            <link_ref name="Link216" srcNode="CACHE14" dstNode="MAILCLIENT4"/>
+            <link_ref name="Link40" srcNode="CACHE14" dstNode="MAILCLIENT5"/>
+            <link_ref name="Link167" srcNode="CACHE14" dstNode="DPI17"/>
+            <link_ref name="Link147" srcNode="CACHE14" dstNode="SPAM5"/>
+        </node>
+        <node name="CACHE11" function="CACHE" numberOfLinks="10">
+            <link_ref name="Link23" srcNode="CACHE11" dstNode="WEBSERVER3"/>
+            <link_ref name="Link75" srcNode="CACHE11" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link253" srcNode="CACHE11" dstNode="CACHE8"/>
+            <link_ref name="Link27" srcNode="CACHE11" dstNode="CACHE7"/>
+            <link_ref name="Link160" srcNode="CACHE11" dstNode="DPI17"/>
+            <link_ref name="Link193" srcNode="CACHE11" dstNode="SPAM15"/>
+            <link_ref name="Link183" srcNode="CACHE11" dstNode="NAT1"/>
+            <link_ref name="Link222" srcNode="CACHE11" dstNode="FW9"/>
+            <link_ref name="Link72" srcNode="CACHE11" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link257" srcNode="CACHE11" dstNode="DPI6"/>
+        </node>
+        <node name="DPI12" function="DPI" numberOfLinks="8">
+            <link_ref name="Link78" srcNode="DPI12" dstNode="CACHE14"/>
+            <link_ref name="Link42" srcNode="DPI12" dstNode="SPAM5"/>
+            <link_ref name="Link15" srcNode="DPI12" dstNode="WEBCLIENT7"/>
+            <link_ref name="Link162" srcNode="DPI12" dstNode="WEBCLIENT0"/>
+            <link_ref name="Link28" srcNode="DPI12" dstNode="NAT4"/>
+            <link_ref name="Link118" srcNode="DPI12" dstNode="MAILSERVER2"/>
+            <link_ref name="Link267" srcNode="DPI12" dstNode="WEBCLIENT1"/>
+            <link_ref name="Link123" srcNode="DPI12" dstNode="DPI6"/>
+        </node>
+    </nffg>
+    <policy name="Policy10" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="MAILCLIENT4"/>
+        <dstNode name="WEBSERVER0"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>WEB_CLIENT</traversedFuncType>
+        <traversedFuncType>MAIL_SERVER</traversedFuncType>
+    </policy>
+    <policy name="Policy9" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="WEBCLIENT3"/>
+        <dstNode name="WEBSERVER0"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>MAIL_CLIENT</traversedFuncType>
+    </policy>
+    <policy name="Policy8" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="WEBCLIENT3"/>
+        <dstNode name="WEBSERVER1"/>
+        <verificationResult verificationTime="2016-09-26T07:42:20.000+02:00">
+            <resultMessage>Policy verification result not true</resultMessage>
+            <result>NOTSATISFIED</result>
+        </verificationResult>
+        <traversedFuncType>MAIL_SERVER</traversedFuncType>
+    </policy>
+    <policy name="Policy7" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="NEGATIVE">
+        <srcNode name="MAILCLIENT2"/>
+        <dstNode name="WEBSERVER1"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>WEB_CLIENT</traversedFuncType>
+        <traversedFuncType>SPAM</traversedFuncType>
+        <traversedFuncType>CACHE</traversedFuncType>
+    </policy>
+    <policy name="Policy6" policyKind="REACHABILITY" nffg_ref="Nffg0" policyLogic="NEGATIVE">
+        <srcNode name="MAILCLIENT2"/>
+        <dstNode name="WEBSERVER1"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+    </policy>
+    <policy name="Policy5" policyKind="REACHABILITY" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="MAILCLIENT2"/>
+        <dstNode name="WEBSERVER0"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+    </policy>
+    <policy name="Policy4" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="WEBCLIENT1"/>
+        <dstNode name="WEBSERVER1"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>NAT</traversedFuncType>
+    </policy>
+    <policy name="Policy3" policyKind="REACHABILITY" nffg_ref="Nffg0" policyLogic="POSITIVE">
+        <srcNode name="WEBCLIENT1"/>
+        <dstNode name="MAILSERVER2"/>
+        <verificationResult verificationTime="2016-09-25T22:51:20.000+02:00">
+            <resultMessage>Policy verificarion result true</resultMessage>
+            <result>SATISFIED</result>
+        </verificationResult>
+    </policy>
+    <policy name="Policy2" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="NEGATIVE">
+        <srcNode name="WEBCLIENT1"/>
+        <dstNode name="MAILSERVER2"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>NAT</traversedFuncType>
+    </policy>
+    <policy name="Policy1" policyKind="TRAVERSAL" nffg_ref="Nffg0" policyLogic="NEGATIVE">
+        <srcNode name="WEBCLIENT0"/>
+        <dstNode name="MAILSERVER2"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+        <traversedFuncType>VPN</traversedFuncType>
+        <traversedFuncType>FW</traversedFuncType>
+        <traversedFuncType>WEB_SERVER</traversedFuncType>
+    </policy>
+    <policy name="Policy0" policyKind="REACHABILITY" nffg_ref="Nffg0" policyLogic="NEGATIVE">
+        <srcNode name="WEBCLIENT0"/>
+        <dstNode name="WEBSERVER0"/>
+        <verificationResult>
+            <resultMessage>No verification result for policy</resultMessage>
+            <result>UNVERIFIED</result>
+        </verificationResult>
+    </policy>
+</ns:network_services>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="build-service" name="NFFG-3">
+	
+	<description>
+			Script for NFFG Assignment 3
+	</description>
+	
+	<property name="basedir" location="." />	
+	<property name="gen.dir" location="${basedir}/generated" />	
+	<property name="schema.dir" location="${basedir}/xsd" />
+	<property name="PORT" value="8080"/>
+	<property name="NEO4JURL" value="http://localhost:${tomcatPort}/Neo4JXML/rest" />
+	<property name="WADL" value="${NEO4JURL}/application.wadl"/>
+	<property name="URLNFFG" value="http://localhost:8080/NffgService/rest" />
+	<property name="WADLNFFG" value="${URLNFFG}/application.wadl"/>
+	<property name="path.prefix" value="it/polito/dp2/sol3/service" />
+	
+	<!-- Java compiler settings -->
+	<property name="debug" value="true" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	
+	<!-- The location to be used for class files -->
+	<property name="build.dir" location="${basedir}/build" />
+	<!-- The location for source files -->
+	<property name="src.dir" location="${basedir}/src" />
+	<!-- The location for solutions -->
+	<property name="sol3.dir" value="src/it/polito/dp2/NFFG/sol3" />
+	<!-- The location for jar files -->
+	<property name="lib.dir" location="${basedir}/lib" />
+	<!-- The location for custom files -->
+	<property name="custom.dir" location="${basedir}/custom" />
+
+
+	<path id="sol.classpath">
+		<fileset dir="${basedir}/lib" includes="*.jar" />
+	</path>
+	<taskdef name="wjc" classname="org.jvnet.ws.wadl2java.WJCTask">
+		<classpath>
+			<fileset dir="${basedir}/lib" includes="*.jar" />
+		</classpath>
+	</taskdef>
+	
+	<!-- Target generate-artifacts from the schema of the project 3a -->
+		<target name="generate-bindings" description="Generate bindings from schema">
+			<mkdir dir="${gen.dir}" />
+			<exec executable="xjc" failonerror="true" >
+				<arg value="-d" />
+				<arg value="${gen.dir}" />
+				<arg value="-p" />
+				<arg value="it.polito.dp2.NFFG.sol3.service" />
+				<arg value="${schema.dir}/nffgVerifier.xsd" />
+			</exec>
+			<touch file="${gen.dir}/.flagfile" />
+		</target>
+	
+	<!-- define the client artifacts generation target -->
+	<target name="generate-artifacts">
+	   	<echo message="Compiling the descriptions..." />
+	
+	   	<wjc description="${WADL}" package="it.polito.dp2.NFFG.sol3.service" autoSchemaPackage="false" target="${gen.dir}">
+	     <customizations dir="${basedir}" includes="binding.xjc"/>
+	     <produces dir="${gen.dir}/it/polito/dp2/NFFG/sol3/service" includes="*.java"/>
+	     <depends dir="${basedir}" includes="build.xml"/>
+	    </wjc>
+	</target>
+	
+	<target name="generate-artifacts-for-client1">
+		   	<echo message="Compiling the descriptions..." />
+		
+		   	<wjc description="${WADLNFFG}" package="it.polito.dp2.NFFG.sol3.client1" autoSchemaPackage="false" target="${gen.dir}">
+		     <customizations dir="${basedir}" includes="binding.xjc"/>
+		     <produces dir="${gen.dir}/it/polito/dp2/NFFG/sol3/client1" includes="*.java"/>
+		     <depends dir="${basedir}" includes="build.xml"/>
+		    </wjc>
+		</target>
+	
+	<target name="generate-artifacts-for-client2">
+			   	<echo message="Compiling the descriptions..." />	
+			   	<wjc description="${WADLNFFG}" package="it.polito.dp2.NFFG.sol3.client2" autoSchemaPackage="false" target="${gen.dir}">
+			     <customizations dir="${basedir}" includes="binding.xjc"/>
+			     <produces dir="${gen.dir}/it/polito/dp2/NFFG/sol3/client2" includes="*.java"/>
+			     <depends dir="${basedir}" includes="build.xml"/>
+			    </wjc>
+			</target>
+	
+	<target name="build-service" depends="clean,generate-bindings,generate-artifacts" >
+		<javac debug="on" fork="true" destdir="${build.dir}" srcdir="${src.dir}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="${gen.dir}"/>
+			<include name="it/polito/dp2/NFFG/sol3/service/**" />
+			<classpath>
+				<path refid="sol.classpath" />
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="build-client" depends="generate-artifacts-for-client1,generate-artifacts-for-client2">
+		<javac debug="on" fork="true" destdir="${build.dir}" srcdir="${src.dir}" includeantruntime="false" source="${source}" target="${target}"	>
+			<src path="${gen.dir}"/>
+			<include name="it/polito/dp2/NFFG/sol3/client1/**" />
+			<include name="it/polito/dp2/NFFG/sol3/client2/**" />
+			<classpath>
+				<path refid="sol.classpath" />
+			</classpath>
+		</javac>
+	</target>
+	<!-- target for cleaning -->
+	
+	<target name="clean">
+
+		<delete dir="${gen.dir}"/>
+	</target>
+
+</project>

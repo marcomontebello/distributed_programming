@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE network_services SYSTEM "./nffgInfo.dtd">
+<network_services>
+	<nf_fg name="nffg1" updateTime="10:00:00 31/12/2015">
+		<node name="WebClient1" functionalType="WEB_CLIENT" >	
+			<link name="l1" source="WebClient1" destination="NAT1" />			
+		</node>	
+			
+		<node name="NAT1" functionalType="NAT">
+				<link name="l2" source="NAT1" destination="Firewall1" />	
+		</node>
+		
+		<node name="Firewall1" functionalType="FW">
+				<link name="l3" source="Firewall1" destination="WebServer1" />		
+		</node>
+		
+		<node name="WebServer1" functionalType="WEB_SERVER"/>	
+		
+	</nf_fg>	
+		
+	<nf_fg name="nffg2" updateTime="10:00:00 31/12/2015">
+		<node name="WebClient1_2" functionalType="WEB_CLIENT" >
+				<link name="l1_2" source="WebClient1_2" destination="NAT1_2" />	
+		</node>	
+		<node name="NAT1_2" functionalType="NAT">
+				<link name="l2_2" source="NAT1_2" destination="Firewall1_2" />	
+				<link name="l4_2" source="NAT1_2" destination="WebClient1_2" />				
+		</node>
+		<node name="Firewall1_2" functionalType="FW">
+				<link name="l3_2" source="Firewall1_2" destination="WebServer1_2" />
+				<link name="l5_2" source="Firewall1_2" destination="NAT1_2" />		
+		</node>
+		<node name="WebServer1_2" functionalType="WEB_SERVER">
+				<link name="l56_2" source="WebServer1_2" destination="Firewall1_2" />		
+		</node>	
+	</nf_fg>
+	
+	<policy name="Policy1" PolicyKind="REACHABILITY" nffgname="nffg1" Holdtype="POSITIVE" >
+		<ReachabilityPolicy SRCnode="WebClient1" DSTnode="WebServer1"/>
+		<VerificationResult verResult="NOT-YET-VERIFIED">
+			<resultMsg>null</resultMsg>
+		</VerificationResult>
+	</policy>
+	
+	<policy name="Policy2" PolicyKind="REACHABILITY" nffgname="nffg1" Holdtype="NEGATIVE" >
+		<ReachabilityPolicy SRCnode="WebServer1" DSTnode="WebClient1"/>
+		<VerificationResult verResult="NOT-YET-VERIFIED">
+			<resultMsg>null</resultMsg>
+		</VerificationResult>
+	</policy>
+	
+	<policy name="Policy3" PolicyKind="TRAVERSAL" nffgname="nffg1" Holdtype="POSITIVE" >
+		<TraversalPolicy SRCnode="WebClient1" DSTnode="WebServer1">
+			<TraversedFunctionalType functionalType="FW"/>
+			<TraversedFunctionalType functionalType="NAT"/>			
+		</TraversalPolicy>
+		
+		<VerificationResult verResult="NOT-YET-VERIFIED">
+			<resultMsg>null</resultMsg>
+		</VerificationResult>
+	</policy>
+		
+	
+	<policy name="Policy4" PolicyKind="REACHABILITY" nffgname="nffg2" Holdtype="POSITIVE" >
+		<ReachabilityPolicy SRCnode="WebClient1_2" DSTnode="WebServer1_2"/>
+		<VerificationResult verResult="SATISFIED" verificationTime="10:00:00 23/10/2016">
+			<resultMsg>POLICY SATISFIED</resultMsg>
+		</VerificationResult>
+	</policy>
+	
+	<policy name="Policy5" PolicyKind="REACHABILITY" nffgname="nffg2" Holdtype="POSITIVE" >
+		<ReachabilityPolicy SRCnode="WebServer1_2" DSTnode="WebClient1_2"/>
+		<VerificationResult verResult="VIOLATED" verificationTime="10:00:30 23/10/2016" >
+			<resultMsg>POLICY VIOLATED. TRY TO CHECK SOME ERROR</resultMsg>
+		</VerificationResult>
+	</policy>
+	
+	<policy name="Policy6" PolicyKind="TRAVERSAL" nffgname="nffg2" Holdtype="POSITIVE" >
+		<TraversalPolicy SRCnode="WebClient1_2" DSTnode="WebServer1_2">
+			<TraversedFunctionalType functionalType="FW"/>
+			<TraversedFunctionalType functionalType="NAT"/>		
+		</TraversalPolicy>
+		
+		<VerificationResult verResult="SATISFIED" verificationTime="10:00:56 23/10/2016">
+			<resultMsg></resultMsg>
+		</VerificationResult>
+	</policy>	
+	
+</network_services>
